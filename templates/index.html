@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Material Design Calculator</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android-Style Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .calculator {
+            width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .calculator .display {
+            height: 60px;
+            font-size: 2em;
+            text-align: right;
+            padding-right: 10px;
+            padding-left: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .calculator .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+        .calculator .button {
+            height: 50px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 42% ;margin-top: 2%;border: 3px rgb(94, 229, 184) solid ;font-size: larger; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  ">Android App Calculator</div>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="button btn grey lighten-1" onclick="clearDisplay()">C</button>
+            <button class="button btn grey lighten-1" onclick="appendToDisplay('/')">/</button>
+            <button class="button btn grey lighten-1" onclick="appendToDisplay('*')">*</button>
+            <button class="button btn grey lighten-1" onclick="deleteLast()">DEL</button>
+            <button class="button btn" onclick="appendToDisplay('7')">7</button>
+            <button class="button btn" onclick="appendToDisplay('8')">8</button>
+            <button class="button btn" onclick="appendToDisplay('9')">9</button>
+            <button class="button btn grey lighten-1" onclick="appendToDisplay('-')">-</button>
+            <button class="button btn" onclick="appendToDisplay('4')">4</button>
+            <button class="button btn" onclick="appendToDisplay('5')">5</button>
+            <button class="button btn" onclick="appendToDisplay('6')">6</button>
+            <button class="button btn grey lighten-1" onclick="appendToDisplay('+')">+</button>
+            <button class="button btn" onclick="appendToDisplay('1')">1</button>
+            <button class="button btn" onclick="appendToDisplay('2')">2</button>
+            <button class="button btn" onclick="appendToDisplay('3')">3</button>
+            <button class="button btn" onclick="calculateResult()">=</button>
+            <button class="button btn" onclick="appendToDisplay('0')">0</button>
+            <button class="button btn" onclick="appendToDisplay('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            let display = document.getElementById('display');
+            if (display.innerText === "0" || display.innerText === "Error") {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').innerText = "0";
+        }
+
+        function deleteLast() {
+            let display = document.getElementById('display');
+            display.innerText = display.innerText.slice(0, -1);
+            if (display.innerText === "") {
+                display.innerText = "0";
+            }
+        }
+
+        function calculateResult() {
+            let display = document.getElementById('display');
+            try {
+                display.innerText = eval(display.innerText);
+            } catch {
+                display.innerText = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
